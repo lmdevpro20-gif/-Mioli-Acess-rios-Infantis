@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   VARIÁVEIS DE TEMA - MODO CLARO (padrão)
+   ============================================ */
+:root {
+  --dk-bg:      244 244 248;   /* #f4f4f8 */
+  --dk-surface: 255 255 255;   /* #ffffff */
+  --dk-card:    255 255 255;   /* #ffffff */
+  --dk-card2:   248 248 252;   /* #f8f8fc */
+  --dk-border:  226 226 240;   /* #e2e2f0 */
+  --dk-border2: 210 210 230;   /* #d2d2e6 */
+  --dk-text:    26  26  46;    /* #1a1a2e */
+  --dk-muted:   100 100 140;   /* #64648c */
+  --dk-hover:   238 236 252;   /* #eeeсfc */
+}
+
+/* ============================================
+   VARIÁVEIS DE TEMA - MODO ESCURO
+   ============================================ */
+[data-theme="dark"] {
+  --dk-bg:      11  11  19;    /* #0b0b13 */
+  --dk-surface: 16  16  29;    /* #10101d */
+  --dk-card:    22  22  40;    /* #161628 */
+  --dk-card2:   28  28  48;    /* #1c1c30 */
+  --dk-border:  37  37  64;    /* #252540 */
+  --dk-border2: 46  46  80;    /* #2e2e50 */
+  --dk-text:    221 221 245;   /* #ddddf5 */
+  --dk-muted:   106 106 149;   /* #6a6a95 */
+  --dk-hover:   30  30  53;    /* #1e1e35 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: rgb(var(--dk-bg));
+  color: rgb(var(--dk-text));
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--dk-surface));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--dk-border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--dk-border2));
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5) opacity(0.7);
+}
+
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.5);
+}
+
+@layer components {
+  .input-base {
+    @apply w-full px-4 py-2.5 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2;
+    background-color: rgb(var(--dk-card));
+    border: 1px solid rgb(var(--dk-border));
+    color: rgb(var(--dk-text));
+    --tw-ring-color: #7034f0;
+  }
+  .input-base::placeholder {
+    color: rgb(var(--dk-muted));
+  }
+  .input-base:focus {
+    border-color: #7034f0;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2.5 rounded-lg font-medium text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+    background-color: #5a1fd1;
+    color: #fff;
+  }
+  .btn-primary:hover:not(:disabled) {
+    background-color: #7034f0;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2.5 rounded-lg font-medium text-sm transition-colors;
+    background-color: rgb(var(--dk-card));
+    border: 1px solid rgb(var(--dk-border));
+    color: rgb(var(--dk-text));
+  }
+  .btn-secondary:hover {
+    background-color: rgb(var(--dk-hover));
+  }
+
+  .btn-danger {
+    @apply px-4 py-2.5 rounded-lg font-medium text-sm transition-colors;
+    background-color: #dc2626;
+    color: #fff;
+  }
+  .btn-danger:hover {
+    background-color: #ef4444;
+  }
+
+  .card {
+    @apply rounded-xl p-6;
+    background-color: rgb(var(--dk-card));
+    border: 1px solid rgb(var(--dk-border));
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card-sm {
+    @apply rounded-xl p-4;
+    background-color: rgb(var(--dk-card));
+    border: 1px solid rgb(var(--dk-border));
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold;
+    color: rgb(var(--dk-text));
+  }
+
+  .page-subtitle {
+    @apply text-sm mt-0.5;
+    color: rgb(var(--dk-muted));
+  }
+
+  .label {
+    @apply block text-sm font-medium mb-1.5;
+    color: rgb(var(--dk-muted));
+  }
+
+  .badge-red {
+    @apply inline-flex items-center space-x-1 px-2 py-0.5 rounded-full text-xs font-medium;
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+  }
+}
